@@ -1,28 +1,30 @@
-import React from 'react'
-import { Flex, Button } from "@chakra-ui/react"
-import { useNavigate } from "react-router-dom"
-import { goToLoginPage } from '../routes/coordinator'
+import { Box, Flex, Button, useColorModeValue } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { goToLoginPage } from "../routes/coordinator";
 
-const Header = () => {
-    const navigate = useNavigate()
+export default function Header() {
+  const navigate = useNavigate();
 
-    const logout = () => {
-        window.localStorage.removeItem("cookenu-token")
-        goToLoginPage(navigate)
-    }
+  const logout = () => {
+    window.localStorage.removeItem("cookenu-token");
+    goToLoginPage(navigate);
+  };
 
-    return (
-        <Flex
-            h={20}
-            bg="blue.100"
-            justifyContent="end"
-            alignItems="center"
-            paddingLeft={8}
-            paddingRight={8}
-        >
-            <Button onClick={logout} colorScheme="red">Deslogar</Button>
+  return (
+    <>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"end"}>
+          <Button
+            variant={"solid"}
+            colorScheme={"red"}
+            size={"sm"}
+            mr={4}
+            onClick={logout}
+          >
+            Deslogar
+          </Button>
         </Flex>
-    )
+      </Box>
+    </>
+  );
 }
-
-export default Header
